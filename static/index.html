@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridge AI | Modern Recipe Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="glass-card header">
+            <div class="logo-area">
+                <i data-lucide="utensils" class="logo-icon"></i>
+                <h1>Fridge<span>AI</span></h1>
+            </div>
+            <p>Your strict culinary assistant. Zero waste, infinite taste.</p>
+        </header>
+
+        <section class="glass-card search-section">
+            <div class="input-group">
+                <label for="ingredients">What's in your fridge?</label>
+                <div class="textarea-wrapper">
+                    <textarea id="ingredients" placeholder="e.g. Tomato, Cheese, Bread, Eggs..."></textarea>
+                    <div class="input-hint">Separate ingredients with commas</div>
+                </div>
+            </div>
+            <button id="generate-btn" class="primary-btn">
+                <span class="btn-text">Generate Recipe</span>
+                <i data-lucide="chef-hat" class="btn-icon"></i>
+                <div class="loader-ring"></div>
+            </button>
+        </section>
+
+        <section id="result-section" class="result-section hidden">
+            <!-- Content will be injected by script.js -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
