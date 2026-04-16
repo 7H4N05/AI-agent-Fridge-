@@ -36,7 +36,7 @@ class FeedbackRequest(BaseModel):
 
 class RecipeResponse(BaseModel):
     is_possible: bool
-    recipes: List[dict]
+    recipes: List[dict] = [] # Added default empty list to prevent validation errors
 
 @app.post("/generate-recipe", response_model=RecipeResponse)
 async def generate_recipe(request: RecipeRequest):
