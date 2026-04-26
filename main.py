@@ -3,6 +3,7 @@ import json
 from typing import List, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from groq import Groq
@@ -90,7 +91,8 @@ async def submit_feedback(request: FeedbackRequest):
         }
         
         # Log to file
-        with open("feedback.json", "a") as f:
+        feedback_path = os.path.join("/tmp", "feedback.json")
+        with open(feedback_path, "a") as f:
             f.write(json.dumps(data) + "\n")
         
         return {"status": "success", "message": "Feedback received. Thank you for helping me improve!"}
@@ -98,8 +100,13 @@ async def submit_feedback(request: FeedbackRequest):
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# Mount static files
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+# Serve static files
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+@app.get("/")
+async def serve_index():
+    return FileResponse(os.path.join(static_dir, "index.html"))
 
 if __name__ == "__main__":
     import uvicorn
