@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generate-btn');
     const ingredientsInput = document.getElementById('ingredients');
+    const providerInput = document.getElementById('provider');
+    const nationalityInput = document.getElementById('nationality');
+    const allowSpicesInput = document.getElementById('allow-spices');
     const resultSection = document.getElementById('result-section');
 
     generateBtn.addEventListener('click', async () => {
         const ingredients = ingredientsInput.value.trim();
+        const provider = providerInput ? providerInput.value : 'openai';
+        const nationality = nationalityInput ? nationalityInput.value : 'Any';
+        const allowSpices = allowSpicesInput ? allowSpicesInput.checked : true;
 
         if (!ingredients) {
             alert('Please enter some ingredients first!');
@@ -21,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ ingredients }),
+                body: JSON.stringify({ ingredients, provider, nationality, allow_spices: allowSpices }),
             });
 
             if (!response.ok) {
@@ -101,7 +107,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `).join('');
 
-            resultSection.innerHTML = cardsHtml;
+            const moreBtnHtml = `
+                <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                    <button id="more-recipe-btn" class="primary-btn" style="display: inline-flex; width: auto; padding: 12px 24px;">
+                        <span class="btn-text">Give More Recipes</span>
+                        <i data-lucide="refresh-cw" class="btn-icon"></i>
+                    </button>
+                </div>
+            `;
+
+            resultSection.innerHTML = cardsHtml + moreBtnHtml;
+
+            document.getElementById('more-recipe-btn').addEventListener('click', () => {
+                document.getElementById('generate-btn').click();
+            });
         }
 
         // Re-create icons for the newly added elements

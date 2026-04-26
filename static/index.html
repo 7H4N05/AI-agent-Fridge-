@@ -33,6 +33,41 @@
                     <textarea id="ingredients" placeholder="e.g. Tomato, Cheese, Bread, Eggs..."></textarea>
                     <div class="input-hint">Separate ingredients with commas</div>
                 </div>
+                <div class="checkbox-wrapper" style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="allow-spices" checked>
+                    <label for="allow-spices" style="margin: 0; font-size: 0.9em; font-weight: normal; cursor: pointer; color: var(--text-color);">Allow common spices and cooking oils (salt, pepper, oil, etc.)</label>
+                </div>
+            </div>
+            <div class="input-row" style="display: flex; gap: 15px; margin-top: 15px;">
+                <div class="input-group" style="flex: 1; margin-top: 0;">
+                    <label for="nationality">Cuisine Type</label>
+                    <select id="nationality" class="provider-select">
+                        <option value="Any" selected>Any / Global</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Indian">Indian</option>
+                        <option value="American">American</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="French">French</option>
+                        <option value="Mediterranean">Mediterranean</option>
+                    </select>
+                </div>
+                <div class="input-group" style="flex: 1; margin-top: 0;">
+                    <label for="provider">Choose AI Model</label>
+                    <select id="provider" class="provider-select">
+                        <optgroup label="OpenAI Models">
+                            <option value="openai:gpt-4o">GPT-4o (Most Capable)</option>
+                            <option value="openai:gpt-4o-mini" selected>GPT-4o-Mini (Fast & Cheap)</option>
+                            <option value="openai:gpt-3.5-turbo">GPT-3.5 Turbo (Legacy)</option>
+                        </optgroup>
+                        <optgroup label="Groq Models">
+                            <option value="groq:llama-3.3-70b-versatile">LLaMA-3.3 70B (Versatile)</option>
+                            <option value="groq:mixtral-8x7b-32768">Mixtral 8x7B (Fast)</option>
+                            <option value="groq:gemma2-9b-it">Gemma 2 9B (Lightweight)</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
             <button id="generate-btn" class="primary-btn">
                 <span class="btn-text">Generate Recipe</span>

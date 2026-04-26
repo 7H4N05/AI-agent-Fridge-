@@ -152,6 +152,30 @@ textarea:focus {
     border-color: var(--primary);
 }
 
+.provider-select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 16px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.provider-select:focus {
+    border-color: var(--primary);
+}
+
+.provider-select option {
+    background: var(--bg-dark);
+    color: white;
+}
+
 .input-hint {
     margin-top: 8px;
     font-size: 0.85rem;
