@@ -101,7 +101,7 @@ async def submit_feedback(request: FeedbackRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 # Serve static files
-static_dir = os.path.join(os.path.dirname(__file__), "static")
+static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 @app.get("/")
